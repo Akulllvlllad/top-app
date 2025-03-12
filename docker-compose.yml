@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: apps/app-nest/Dockerfile
-    image: ghcr.io/akulllvlllad/top-app-appnest:develop
+    image: ghcr.io/akulllvlllad/top-app:develop
     ports:
       - '3000:3000'
     environment:
