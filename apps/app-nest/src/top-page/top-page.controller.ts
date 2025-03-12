@@ -10,6 +10,7 @@ import {
   UsePipes,
   ValidationPipe,
   NotFoundException,
+  Query,
 } from '@nestjs/common';
 import { FindTopPageDto } from './dto/find-top-page.dto';
 import { TopPageService } from './top-page.service';
@@ -64,8 +65,13 @@ export class TopPageController {
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
-  @Post()
+  @Post('find')
   async find(@Body() dto: FindTopPageDto) {
     return await this.topPageService.findByCategory(dto.firstCategory);
+  }
+
+  @Get('textSearch')
+  async textSearch(@Query('query') query: string) {
+    return await this.topPageService.textSearch(query);
   }
 }

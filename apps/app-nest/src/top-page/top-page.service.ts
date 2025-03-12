@@ -35,14 +35,18 @@ export class TopPageService {
 
   async findByCategory(firstCategory: TopLevelCategory): Promise<TopPage[]> {
     return this.topPage
-      .find(
-        { firstCategory },
-        {
-          alias: 1,
-          title: 1,
-          secondLevelCategory: 1,
-        }
-      )
+      .aggregate()
+      .match({ firstLevelCategory: firstCategory })
+      .group({
+        _id: { secondLevelCategory: '$secondLevelCategory' },
+        pages: { $push: { alias: '$alias', title: '$title' } },
+      })
+      .exec();
+  }
+
+  async textSearch(query: string): Promise<TopPage[]> {
+    return this.topPage
+      .find({ $text: { $search: query, $caseSensitive: false } })
       .exec();
   }
 }
