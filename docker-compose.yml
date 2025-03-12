@@ -2,6 +2,9 @@ services:
   app.nest:
     build:
       context: .
-      dockerfile: ./apps/app-nest/Dockerfile
+      dockerfile: apps/app-nest/Dockerfile
+    image: ghcr.io/akulllvlllad/top-app-appnest:develop
     ports:
-      - '8888:8888'
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
