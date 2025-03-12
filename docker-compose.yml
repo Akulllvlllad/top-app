@@ -1,8 +1,7 @@
-version: '3.8'
 services:
-  appNest:
+  app.nest:
     build:
       context: .
-      dockerfile: apps/app-nest/Dockerfile
+      dockerfile: ./apps/app-nest/Dockerfile
     ports:
       - '8888:8888'
