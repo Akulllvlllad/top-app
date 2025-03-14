@@ -74,4 +74,9 @@ export class TopPageController {
   async textSearch(@Query('query') query: string) {
     return await this.topPageService.textSearch(query);
   }
+
+  @Get('all')
+  async getAll() {
+    return await this.topPageService.findAll();
+  }
 }

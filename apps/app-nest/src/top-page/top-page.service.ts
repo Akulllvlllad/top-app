@@ -33,6 +33,10 @@ export class TopPageService {
     return this.topPage.findOne({ alias }).exec();
   }
 
+  async findAll(): Promise<TopPage[]> {
+    return this.topPage.find().exec();
+  }
+
   async findByCategory(firstCategory: TopLevelCategory): Promise<TopPage[]> {
     return this.topPage
       .aggregate()
